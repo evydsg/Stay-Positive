@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "986408516982",
+    "project_id": "stay-positive-mobile-app",
+    "storage_bucket": "stay-positive-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986408516982:android:148986d1bf58c86dad8e57",
+        "android_client_info": {
+          "package_name": "com.example.staypositive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_LG4AT2KtBOf7VsEooyMFVw58q6l-mq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
