@@ -46,6 +46,98 @@
             android:textColor="@color/white"
             android:textSize="10dp" />
 
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginButton"
+            android:id="@+id/Name"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif"
+            />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Name"
+            android:id="@+id/Email"
+            android:text="Email"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif"
+            />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Email"
+            android:id="@+id/Gender"
+            android:text="Gender"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif"
+            />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Gender"
+            android:id="@+id/DOB"
+            android:text="Date of Birth"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif"
+            />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/DOB"
+            android:id="@+id/Password"
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif"
+            />
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Password"
+            android:id="@+id/Confirm_Password"
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif"
+            />
+
+        <Button
+            android:id="@+id/SignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Confirm_Password"
+            android:background="@color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="20dp"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="120dp"
+            android:text="sign up" />
+
+
     </RelativeLayout>
 
 

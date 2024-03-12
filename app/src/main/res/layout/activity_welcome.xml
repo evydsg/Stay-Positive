@@ -17,7 +17,7 @@
         android:src="@drawable/logo_transparent_png" />
 
     <TextView
-        android:id="@+id/text1"
+        android:id="@+id/Welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo"
@@ -35,13 +35,13 @@
         android:id="@+id/registerButton"
         android:layout_width="201dp"
         android:layout_height="63dp"
-        android:layout_below="@+id/text1"
+        android:layout_below="@+id/Welcome"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="33dp"
         android:layout_marginEnd="106dp"
         android:backgroundTint="@color/white"
         android:fontFamily="sans-serif"
-        android:text="Get Started"
+        android:text="sign up"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25dp"
@@ -57,7 +57,7 @@
         android:layout_marginEnd="106dp"
         android:backgroundTint="@color/white"
         android:fontFamily="sans-serif"
-        android:text="Login"
+        android:text="sign in"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25dp"
