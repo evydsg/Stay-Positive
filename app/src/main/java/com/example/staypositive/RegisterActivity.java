@@ -3,6 +3,7 @@ package com.example.staypositive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -18,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     
@@ -44,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         radioGroupRegisterGender = findViewById(R.id.radio_group_register_gender);
         radioGroupRegisterGender.clearCheck();
 
+        progressBar = findViewById(R.id.progressBar);
         Button buttonRegister = findViewById(R.id.signUp);
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +120,23 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
+                    if (task.isSuccessful())
+                    {
+                        Toast.makeText(RegisterActivity.this, "User registered successfully.", Toast.LENGTH_LONG).show();
+
+                        FirebaseUser firebaseUser = auth.getCurrentUser();
+
+                        //Send Verification Email
+                        firebaseUser.sendEmailVerification();
+
+                        //Open User Profile after successful registration
+                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                        //To prevent User from returning back to Register Activity on pressing back button after registration
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             });
         }

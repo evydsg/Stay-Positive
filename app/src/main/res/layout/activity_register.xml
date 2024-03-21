@@ -159,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_below="@+id/DOB"
             android:layout_height="wrap_content"
-            android:hint="Enter your date of birth (dd/mm/yy)"
+            android:hint="Enter your date of birth (mm/dd/yy)"
             android:textSize="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/border"
