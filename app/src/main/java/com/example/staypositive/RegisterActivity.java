@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +18,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -29,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private RadioGroup radioGroupRegisterGender;
     private RadioButton radioButtonRegisterGenderSelected;
+    private static final String TAG="RegsisterActivity";
     
     
     @Override
@@ -136,6 +143,28 @@ public class RegisterActivity extends AppCompatActivity {
 
                         startActivity(intent);
                         finish();
+                    }else {
+                        try{
+                            throw task.getException();
+                        }catch (FirebaseAuthWeakPasswordException e)
+                        {
+                            editTextregisterPassword.setError("Your password is too weak. Kindly use of mix of alphabets, numbers and special number.");
+                            editTextregisterPassword.requestFocus();
+                        }catch (FirebaseAuthInvalidCredentialsException e)
+                        {
+                            editTextregisterPassword.setError("Your email is invalid or already in use. Kindly re-enter.");
+                            editTextregisterPassword.requestFocus();
+                        }catch (FirebaseAuthUserCollisionException e)
+                        {
+                            editTextRegisterEmail.setError("User is already registered with this email. Use another email.");
+                            editTextRegisterEmail.requestFocus();
+                        }catch (Exception e)
+                        {
+                            Log.e(TAG, e.getMessage());
+                            Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+
                     }
                 }
             });
