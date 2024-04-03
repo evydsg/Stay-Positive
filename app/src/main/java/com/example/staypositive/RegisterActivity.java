@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     
@@ -126,23 +128,44 @@ public class RegisterActivity extends AppCompatActivity {
             auth.createUserWithEmailAndPassword(textEmail, textPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-
                     if (task.isSuccessful())
                     {
                         Toast.makeText(RegisterActivity.this, "User registered successfully.", Toast.LENGTH_LONG).show();
 
                         FirebaseUser firebaseUser = auth.getCurrentUser();
 
-                        //Send Verification Email
-                        firebaseUser.sendEmailVerification();
+                        //Enter User Data into the Firebase Realtime Dataase
+                        ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textName, textDOB, textGender);
 
-                        //Open User Profile after successful registration
-                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                        //To prevent User from returning back to Register Activity on pressing back button after registration
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        //Extracting user reference from database for registered users
+                        DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
 
-                        startActivity(intent);
-                        finish();
+                        referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                if (task.isSuccessful())
+                                {
+                                    //Send Verification Email
+                                    firebaseUser.sendEmailVerification();
+
+                                    Toast.makeText(RegisterActivity.this, "User registered successfully. Please verify your email.", Toast.LENGTH_LONG).show();
+
+                                    //Open User Profile after successful registration
+                                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                    //To prevent User from returning back to Register Activity on pressing back button after registration
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                                    startActivity(intent);
+                                    finish();
+                                }else {
+
+                                    Toast.makeText(RegisterActivity.this, "User registration failed. Please try again.", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
+
+                                }
+                            }
+                        });
                     }else {
                         try{
                             throw task.getException();
