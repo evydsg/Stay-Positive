@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -134,8 +135,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                         FirebaseUser firebaseUser = auth.getCurrentUser();
 
+                        //Update Display Name of User
+                        UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(textName).build();
+                        firebaseUser.updateProfile(profileChangeRequest);
+
                         //Enter User Data into the Firebase Realtime Dataase
-                        ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textName, textDOB, textGender);
+                        ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textDOB, textGender);
 
                         //Extracting user reference from database for registered users
                         DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
@@ -161,9 +166,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 }else {
 
                                     Toast.makeText(RegisterActivity.this, "User registration failed. Please try again.", Toast.LENGTH_LONG).show();
-                                    progressBar.setVisibility(View.GONE);
-
                                 }
+                                progressBar.setVisibility(View.GONE);
                             }
                         });
                     }else {
@@ -185,8 +189,8 @@ public class RegisterActivity extends AppCompatActivity {
                         {
                             Log.e(TAG, e.getMessage());
                             Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
                         }
+                        progressBar.setVisibility(View.GONE);
 
                     }
                 }
