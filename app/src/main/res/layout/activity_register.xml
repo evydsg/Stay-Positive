@@ -161,6 +161,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter your date of birth (mm/dd/yy)"
             android:textSize="20dp"
+            android:focusable="false"
             android:layout_marginTop="20dp"
             android:background="@drawable/border"
             android:padding="10dp"
@@ -191,7 +192,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/border"
             android:padding="10dp"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textColorHint="@color/white"
             />
 
