@@ -5,6 +5,8 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,6 +27,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.logging.Handler;
 
@@ -50,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
-        imageViewShowHidePwd.setImageResource(R.drawable.ic_show_pwd);
+        imageViewShowHidePwd.setImageResource(R.drawable.ic_hide_pwd);
         imageViewShowHidePwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,10 +62,10 @@ public class LoginActivity extends AppCompatActivity {
                     //If password is visible then Hide it
                     editTextLoginPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     //Change icon
-                    imageViewShowHidePwd.setImageResource(R.drawable.ic_show_pwd);
+                    imageViewShowHidePwd.setImageResource(R.drawable.ic_hide_pwd);
                 }else {
                     editTextLoginPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    imageViewShowHidePwd.setImageResource(R.drawable.ic_hide_pwd);
+                    imageViewShowHidePwd.setImageResource(R.drawable.ic_show_pwd);
                 }
             }
         });
@@ -103,10 +106,22 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    Toast.makeText(LoginActivity.this, "You are signed in.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MainProfile.class);
-                    // Start the new activity
-                    startActivity(intent);
+                    //Get Instance of the current user
+                    FirebaseUser firebaseUser = authProfile.getCurrentUser();
+
+                    //Check if email is verified
+
+                    if(firebaseUser.isEmailVerified())
+                    {
+                        Toast.makeText(LoginActivity.this, "You are signed in.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        // Start the new activity
+                        startActivity(intent);
+                    }else {
+                        firebaseUser.sendEmailVerification();
+                        authProfile.signOut();
+                        showAlertDialog();
+                    }
                 } else {
                     try{
                         throw task.getException();
@@ -126,5 +141,48 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void showAlertDialog()
+    {
+        //Setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("Email Not Verified");
+        builder.setMessage("Please verify your email before you sign in. You cannot sign in without an email verification.");
+
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //To open email app in a new window
+                startActivity(intent);
+            }
+        });
+
+        //Create the AlertDialog Box
+        AlertDialog alertDialog = builder.create();
+
+        //Show the AlertDialog
+        alertDialog.show();
+    }
+
+    // Check if user is already signed in. In case it is, it will take the user directly to home screen of the app
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(authProfile.getCurrentUser() != null)
+        {
+            Toast.makeText(LoginActivity.this, "You are already signed in.", Toast.LENGTH_SHORT).show();
+
+            //Start the Home Screen Activity
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(LoginActivity.this, "You can sign in now.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
