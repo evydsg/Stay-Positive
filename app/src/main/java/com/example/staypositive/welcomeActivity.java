@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class welcomeActivity extends AppCompatActivity {
 
     Button registerButton, loginButton;
+
+    private FirebaseAuth authProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +42,5 @@ public class welcomeActivity extends AppCompatActivity {
                 }
             });
         }
-
-
 
     }

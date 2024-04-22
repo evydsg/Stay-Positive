@@ -7,6 +7,14 @@
     android:background="@color/black"
     tools:context=".MainProfile">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/home_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/home_icon" />
+
     <ImageView
         android:id="@+id/person_icon_image"
         android:layout_width="206dp"
@@ -26,23 +34,40 @@
         android:background="@drawable/settings_icon" />
 
     <TextView
-        android:id="@+id/full_name"
+        android:id="@+id/welcome_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/person_icon_image"
-        android:text="Name"
+        android:hint="Loading..."
+        android:textColorHint="@color/white"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:fontFamily="sans-serif"
-        android:textSize="20dp"/>
+        android:textSize="30dp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcome_text"
+        android:hint="Loading...name"
+        android:textColorHint="@color/white"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:textSize="20dp"
+        android:padding="10dp"/>
 
     <TextView
         android:id="@+id/email_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/full_name"
-        android:text="Email Address"
+        android:hint="Loading...email"
+        android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:textAlignment="center"
         android:fontFamily="sans-serif"
@@ -54,7 +79,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email_address"
-        android:text="Date of Birth"
+        android:hint="Loading...dateOfBirth"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif"
+        android:textSize="18dp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Loading...gender"
+        android:layout_below="@+id/date_of_birth"
+        android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:textAlignment="center"
         android:fontFamily="sans-serif"
@@ -65,7 +104,7 @@
         android:id="@+id/edit_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/date_of_birth"
+        android:layout_below="@+id/gender"
         android:layout_margin="20dp"
         android:text="Edit Profile"
         android:textColor="@color/white"
@@ -77,11 +116,28 @@
         android:padding="10dp"
         android:background="@drawable/border"/>
 
+    <Button
+        android:id="@+id/delete_account_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_profile_button"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/border"
+        android:fontFamily="sans-serif"
+        android:text="Delete Account"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
 
-
-
-
-
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="58dp"
+        android:layout_height="85dp"
+        android:layout_below="@id/delete_account_button"
+        android:layout_centerInParent="true"
+        android:elevation="10dp"
+        android:visibility="gone" />
 
 </RelativeLayout>
