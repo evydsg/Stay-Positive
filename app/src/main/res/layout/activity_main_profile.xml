@@ -7,11 +7,12 @@
     android:background="@color/black"
     tools:context=".MainProfile">
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/home_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="50dp"
         android:background="@drawable/home_icon" />
 
@@ -21,17 +22,9 @@
         android:layout_height="172dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/person_icon" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/settings_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="50dp"
-        android:layout_toRightOf="@id/person_icon_image"
-        android:background="@drawable/settings_icon" />
 
     <TextView
         android:id="@+id/welcome_text"
@@ -118,18 +111,18 @@
 
     <Button
         android:id="@+id/delete_account_button"
-        android:layout_width="wrap_content"
+        android:layout_width="184dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_profile_button"
-        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:background="@drawable/border"
         android:fontFamily="sans-serif"
         android:text="Delete Account"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/progressBar"

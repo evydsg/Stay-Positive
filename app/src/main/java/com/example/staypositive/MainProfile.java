@@ -3,8 +3,12 @@ package com.example.staypositive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainProfile extends AppCompatActivity {
 
-    Button homeButton, settingsButton, deleteAccountButton;
+    Button homeButton, deleteAccountButton;
     TextView textViewWelcome, textViewName, textViewEmail, textViewGender, textViewDOB;
     ProgressBar progressBar;
     String fullName, email, DOB, gender;
@@ -34,6 +38,8 @@ public class MainProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_profile);
 
+        getSupportActionBar().setTitle("Profile");
+
         textViewWelcome = findViewById(R.id.welcome_text);
         textViewName = findViewById(R.id.full_name);
         textViewEmail = findViewById(R.id.email_address);
@@ -41,7 +47,6 @@ public class MainProfile extends AppCompatActivity {
         textViewGender = findViewById(R.id.gender);
 
         homeButton = findViewById(R.id.home_button);
-        settingsButton = findViewById(R.id.settings_button);
         deleteAccountButton = findViewById(R.id.delete_account_button);
 
         authProfile = FirebaseAuth.getInstance();
@@ -64,14 +69,6 @@ public class MainProfile extends AppCompatActivity {
             }
         });
 
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainProfile.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
         deleteAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +78,8 @@ public class MainProfile extends AppCompatActivity {
         });
 
     }
+
+
     private void showUserProfile(FirebaseUser firebaseUser)
     {
         String userID = firebaseUser.getUid();
@@ -119,5 +118,57 @@ public class MainProfile extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        //Inflate Menu Items
+        getMenuInflater().inflate(R.menu.common_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //When any option is selected
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.refresh_menu)
+        {
+            //Refresh Activity
+            startActivity(getIntent());
+            finish();
+            overridePendingTransition(0,0);
+        }else if(id ==R.id.update_profile)
+        {
+            Intent intent = new Intent(MainProfile.this, UpdateProfileActivity.class);
+            startActivity(intent);
+        }else if(id ==R.id.update_email)
+        {
+            Intent intent = new Intent(MainProfile.this, UpdateEmailActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.settings)
+        {
+           Toast.makeText(MainProfile.this, "Menu Settings", Toast.LENGTH_LONG).show();
+        }else if(id == R.id.change_password)
+        {
+            Intent intent = new Intent(MainProfile.this, ChangePasswordActivity.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.logout)
+        {
+            authProfile.signOut();
+            Toast.makeText(MainProfile.this, "Sign Out", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainProfile.this, MainActivity.class);
+
+
+            //Clear stack to prevent user from coming back to MainProfile Activity
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }else {
+            Toast.makeText(MainProfile.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
