@@ -38,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private static final String TAG = "LoginActivity";
 
+    Button forgotPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         authProfile = FirebaseAuth.getInstance();
 
         Button buttonLogin = findViewById(R.id.signIn);
+        forgotPassword = findViewById(R.id.forgotPassword);
 
         //
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
@@ -95,6 +98,15 @@ public class LoginActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     loginUser(textEmail, textPwd);
                 }
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "You can reset your password now!", Toast.LENGTH_LONG).show();
+
+                        startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
             }
         });
     }

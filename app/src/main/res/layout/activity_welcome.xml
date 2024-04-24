@@ -43,6 +43,7 @@
         android:fontFamily="sans-serif"
         android:text="sign up"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"/>
@@ -59,6 +60,7 @@
         android:backgroundTint="@color/white"
         android:fontFamily="sans-serif"
         android:text="sign in"
+        android:textAllCaps="false"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25dp"
