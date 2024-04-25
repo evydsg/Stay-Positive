@@ -17,7 +17,7 @@
         android:background="@drawable/home_icon" />
 
     <ImageView
-        android:id="@+id/person_icon_image"
+        android:id="@+id/profile_pic"
         android:layout_width="206dp"
         android:layout_height="172dp"
         android:layout_centerHorizontal="true"
@@ -30,7 +30,7 @@
         android:id="@+id/welcome_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/person_icon_image"
+        android:layout_below="@+id/profile_pic"
         android:hint="Loading..."
         android:textColorHint="@color/white"
         android:textAlignment="center"

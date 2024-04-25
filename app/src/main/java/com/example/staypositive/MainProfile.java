@@ -53,6 +53,16 @@ public class MainProfile extends AppCompatActivity {
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
         progressBar = findViewById(R.id.progressBar);
 
+        //Set OnClickListener on ImageView to Open UploadProfilePicActivity
+        imageView = findViewById(R.id.profile_pic);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainProfile.this, UploadProfilePicActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if (firebaseUser == null)
         {
             Toast.makeText(MainProfile.this, "Something went wrong! User's details are not available at the moment.", Toast.LENGTH_LONG).show();
@@ -141,7 +151,7 @@ public class MainProfile extends AppCompatActivity {
             overridePendingTransition(0,0);
         }else if(id ==R.id.update_profile)
         {
-            Intent intent = new Intent(MainProfile.this, UpdateProfileActivity.class);
+            Intent intent = new Intent(MainProfile.this, UploadProfilePicActivity.class);
             startActivity(intent);
         }else if(id ==R.id.update_email)
         {
