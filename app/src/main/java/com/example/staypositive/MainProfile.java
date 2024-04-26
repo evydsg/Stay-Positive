@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class MainProfile extends AppCompatActivity {
 
@@ -115,6 +117,13 @@ public class MainProfile extends AppCompatActivity {
                     textViewEmail.setText(email);
                     textViewGender.setText(gender);
                     textViewDOB.setText(DOB);
+
+                    //Set User Profile Picture (After it has been uploaded)
+                    Uri uri = firebaseUser.getPhotoUrl();
+
+                    Picasso.get().load(uri).into(imageView);
+                }else {
+                    Toast.makeText(MainProfile.this,"Something went wrong!", Toast.LENGTH_LONG).show();
                 }
 
                 progressBar.setVisibility(View.GONE);
