@@ -31,7 +31,7 @@ public class MainProfile extends AppCompatActivity {
     Button homeButton, deleteAccountButton;
     TextView textViewWelcome, textViewName, textViewEmail, textViewGender, textViewDOB;
     ProgressBar progressBar;
-    String fullName, email, DOB, gender;
+    String fullName, email, DoB, gender;
     ImageView imageView;
     FirebaseAuth authProfile;
 
@@ -109,14 +109,15 @@ public class MainProfile extends AppCompatActivity {
                 {
                     fullName = firebaseUser.getDisplayName();
                     email = firebaseUser.getEmail();
-                    DOB = readUserDetails.DoB;
                     gender = readUserDetails.gender;
+                    DoB = readUserDetails.DoB; // Assigning DOB from database
+                    textViewDOB.setText(DoB); // Setting DOB to textViewDOB
+
 
                     textViewWelcome.setText("Welcome, "+ fullName + "!");
                     textViewName.setText(fullName);
                     textViewEmail.setText(email);
                     textViewGender.setText(gender);
-                    textViewDOB.setText(DOB);
 
                     //Set User Profile Picture (After it has been uploaded)
                     Uri uri = firebaseUser.getPhotoUrl();
@@ -160,8 +161,9 @@ public class MainProfile extends AppCompatActivity {
             overridePendingTransition(0,0);
         }else if(id ==R.id.update_profile)
         {
-            Intent intent = new Intent(MainProfile.this, UploadProfilePicActivity.class);
+            Intent intent = new Intent(MainProfile.this, UpdateProfileActivity.class);
             startActivity(intent);
+            finish();
         }else if(id ==R.id.update_email)
         {
             Intent intent = new Intent(MainProfile.this, UpdateEmailActivity.class);

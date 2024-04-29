@@ -11,7 +11,7 @@ public class ReadWriteUserDetails {
     }
     public ReadWriteUserDetails(String textDoB, String Gender)
     {
-        this.DoB = textDoB;
+        this.DoB= textDoB;
         this.gender = Gender;
     }
 

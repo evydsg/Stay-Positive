@@ -173,6 +173,7 @@ public class UploadProfilePicActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(UploadProfilePicActivity.this, UpdateProfileActivity.class);
             startActivity(intent);
+            finish();
         }else if(id ==R.id.update_email)
         {
             Intent intent = new Intent(UploadProfilePicActivity.this, UpdateEmailActivity.class);

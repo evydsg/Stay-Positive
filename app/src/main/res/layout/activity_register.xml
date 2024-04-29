@@ -66,6 +66,7 @@
             android:layout_below="@+id/Name"
             android:layout_height="wrap_content"
             android:hint="Enter your name"
+            android:layout_marginTop="20dp"
             android:textSize="20dp"
             android:background="@drawable/border"
             android:padding="10dp"
@@ -93,6 +94,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter your email"
             android:textSize="20dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/border"
             android:padding="10dp"
             android:inputType="textEmailAddress"
@@ -116,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="20dp"
             android:layout_below="@+id/Gender"
             android:id="@+id/radio_group_register_gender"
             >
