@@ -110,7 +110,7 @@ public class MainProfile extends AppCompatActivity {
                     fullName = firebaseUser.getDisplayName();
                     email = firebaseUser.getEmail();
                     gender = readUserDetails.gender;
-                    DoB = readUserDetails.DoB; // Assigning DOB from database
+                    DoB = readUserDetails.doB; // Assigning DOB from database
                     textViewDOB.setText(DoB); // Setting DOB to textViewDOB
 
 

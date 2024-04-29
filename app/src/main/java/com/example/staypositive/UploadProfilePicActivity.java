@@ -69,7 +69,7 @@ public class UploadProfilePicActivity extends AppCompatActivity {
             }
         });
 
-        //Uploading pic choosed
+        //Uploading pic choosen
         buttonUploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

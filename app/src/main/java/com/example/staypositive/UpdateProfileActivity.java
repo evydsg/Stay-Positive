@@ -138,23 +138,23 @@ public class UpdateProfileActivity extends AppCompatActivity {
             radioButtonUpdateGenderSelected.setError("Gender is required.");
             radioButtonUpdateGenderSelected.requestFocus();
         } else {
+            //Obtain the data entered by user
             textGender = radioButtonUpdateGenderSelected.getText().toString();
             textDoB = editTextUpdateDoB.getText().toString();
             textFullName = editTextUpdateName.getText().toString();
 
             // Create a map to hold the fields to update
-            Map<String, Object> updateMap = new HashMap<>();
-            updateMap.put("fullName", textFullName);
-            updateMap.put("dob", textDoB);
-            updateMap.put("gender", textGender);
+            ReadWriteUserDetails writeUserDetails = new ReadWriteUserDetails(textDoB,textGender);
 
             // Reference to the specific user node in the database
-            DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered users").child(firebaseUser.getUid());
+            DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Registered Users");
+
+            String userID = firebaseUser.getUid();
 
             progressBar.setVisibility(View.VISIBLE);
 
             // Update only specific fields in the database
-            referenceProfile.updateChildren(updateMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            referenceProfile.child(userID).setValue(writeUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
@@ -172,7 +172,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
                             throw task.getException();
                         } catch (Exception e) {
                             Toast.makeText(UpdateProfileActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        }}
+                        }
+                    }
                     progressBar.setVisibility(View.GONE);
                 }
             });
@@ -196,7 +197,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 if(readUserDetails != null)
                 {
                     textFullName = firebaseUser.getDisplayName();
-                    textDoB = readUserDetails.DoB;
+                    textDoB = readUserDetails.doB;
                     textGender = readUserDetails.gender;
 
                     // Initialize textDoB here

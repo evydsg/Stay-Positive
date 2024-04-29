@@ -2,7 +2,7 @@ package com.example.staypositive;
 
 public class ReadWriteUserDetails {
 
-    public String DoB, gender;
+    public String doB, gender;
     //Constructor
 
     public ReadWriteUserDetails()
@@ -11,7 +11,7 @@ public class ReadWriteUserDetails {
     }
     public ReadWriteUserDetails(String textDoB, String Gender)
     {
-        this.DoB= textDoB;
+        this.doB= textDoB;
         this.gender = Gender;
     }
 
