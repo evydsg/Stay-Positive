@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,7 +59,7 @@ public class UpdateEmailActivity extends AppCompatActivity {
         if (firebaseUser.equals(""))
         {
             Toast.makeText(UpdateEmailActivity.this, "Something went wrong! User's details not available.", Toast.LENGTH_LONG).show();
-        }else {
+        } else {
             reAuthenticate(firebaseUser);
         }
 
@@ -70,6 +71,8 @@ public class UpdateEmailActivity extends AppCompatActivity {
         buttonVerifyUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Obtain password for authentication
                 userPwd = editTextPwd.getText().toString();
 
                 if(TextUtils.isEmpty(userPwd))
@@ -90,6 +93,7 @@ public class UpdateEmailActivity extends AppCompatActivity {
 
                                 Toast.makeText(UpdateEmailActivity.this, "Password has been verified." + "You can update your email.", Toast.LENGTH_LONG).show();
                                 textViewAuthenticated.setText("You have been verified. You can update your email now.");
+                                textViewAuthenticated.setGravity(Gravity.CENTER);
 
                                 editTextNewEmail.setEnabled(true);
                                 editTextPwd.setEnabled(false);
@@ -110,7 +114,7 @@ public class UpdateEmailActivity extends AppCompatActivity {
                                             editTextNewEmail.requestFocus();
                                         }else if(!Patterns.EMAIL_ADDRESS.matcher(userNewEmail).matches())
                                         {
-                                            Toast.makeText(UpdateEmailActivity.this, "Please enter valid email.",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(UpdateEmailActivity.this, "Please enter a valid email.",Toast.LENGTH_SHORT).show();
                                             editTextNewEmail.setError("Please provide valid email.");
                                             editTextNewEmail.requestFocus();
                                         }else if (userOldEmail.matches(userNewEmail))
@@ -143,7 +147,7 @@ public class UpdateEmailActivity extends AppCompatActivity {
     }
 
     private void updateEmail(FirebaseUser firebaseUser) {
-        firebaseUser.updateEmail(userNewEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseUser.verifyBeforeUpdateEmail(userNewEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isComplete()){
