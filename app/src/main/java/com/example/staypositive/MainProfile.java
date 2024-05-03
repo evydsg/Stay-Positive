@@ -49,7 +49,6 @@ public class MainProfile extends AppCompatActivity {
         textViewGender = findViewById(R.id.gender);
 
         homeButton = findViewById(R.id.home_button);
-        deleteAccountButton = findViewById(R.id.delete_account_button);
 
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
@@ -77,14 +76,6 @@ public class MainProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainProfile.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        deleteAccountButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainProfile.this, DeleteAccount.class);
                 startActivity(intent);
             }
         });
@@ -175,6 +166,12 @@ public class MainProfile extends AppCompatActivity {
         {
             Intent intent = new Intent(MainProfile.this, ChangePasswordActivity.class);
             startActivity(intent);
+            finish();
+        }else if(id == R.id.delete_account)
+        {
+            Intent intent = new Intent(MainProfile.this, DeleteAccount.class);
+            startActivity(intent);
+            finish();
         }
         else if(id == R.id.logout)
         {

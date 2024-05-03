@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
-    private Button resetPassword;
+    private Button resetPassword, homeButton;
     private EditText editTextEmail;
     private ProgressBar progressBar;
     private FirebaseAuth authProfile;
@@ -35,6 +35,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editText_registered_email);
         resetPassword = findViewById(R.id.forgotPassword);
         progressBar = findViewById(R.id.progressBar);
+        homeButton = findViewById(R.id.home_button);
 
         resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                     resetPassword(email);
                 }
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForgotPasswordActivity.this, HomeActivity.class);
+                startActivity(intent);
             }
         });
 

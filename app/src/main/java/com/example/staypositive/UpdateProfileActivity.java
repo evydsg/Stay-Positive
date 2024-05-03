@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -225,5 +227,63 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        //Inflate Menu Items
+        getMenuInflater().inflate(R.menu.common_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //When any option is selected
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.refresh_menu)
+        {
+            //Refresh Activity
+            startActivity(getIntent());
+            finish();
+            overridePendingTransition(0,0);
+        }else if(id ==R.id.update_profile)
+        {
+            Intent intent = new Intent(UpdateProfileActivity.this, UpdateProfileActivity.class);
+            startActivity(intent);
+            finish();
+        }else if(id ==R.id.update_email)
+        {
+            Intent intent = new Intent(UpdateProfileActivity.this, UpdateEmailActivity.class);
+            startActivity(intent);
+        }else if(id == R.id.settings)
+        {
+            Toast.makeText(UpdateProfileActivity.this, "Menu Settings", Toast.LENGTH_LONG).show();
+        }else if(id == R.id.change_password)
+        {
+            Intent intent = new Intent(UpdateProfileActivity.this, ChangePasswordActivity.class);
+            startActivity(intent);
+            finish();
+        }else if(id == R.id.delete_account)
+        {
+            Intent intent = new Intent(UpdateProfileActivity.this, DeleteAccount.class);
+            startActivity(intent);
+            finish();
+        }
+        else if(id == R.id.logout)
+        {
+            authProfile.signOut();
+            Toast.makeText(UpdateProfileActivity.this, "Sign Out", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(UpdateProfileActivity.this, MainActivity.class);
+
+
+            //Clear stack to prevent user from coming back to MainProfile Activity
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        }else {
+            Toast.makeText(UpdateProfileActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
     }

@@ -109,21 +109,6 @@
         android:padding="10dp"
         android:background="@drawable/border"/>
 
-    <Button
-        android:id="@+id/delete_account_button"
-        android:layout_width="184dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_profile_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/border"
-        android:fontFamily="sans-serif"
-        android:text="Delete Account"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="58dp"

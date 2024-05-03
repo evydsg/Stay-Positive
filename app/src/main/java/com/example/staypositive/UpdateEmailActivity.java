@@ -203,6 +203,13 @@ public class UpdateEmailActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(UpdateEmailActivity.this, ChangePasswordActivity.class);
             startActivity(intent);
+            finish();
+        }
+        else if(id == R.id.delete_account)
+        {
+            Intent intent = new Intent(UpdateEmailActivity.this, DeleteAccount.class);
+            startActivity(intent);
+            finish();
         }
         else if(id == R.id.logout)
         {

@@ -35,6 +35,10 @@
         android:id="@+id/logout"
         android:title="Sign Out"
         />
+    <item
+        android:id="@+id/delete_account"
+        android:title="Delete Account"
+        />
 
 
 

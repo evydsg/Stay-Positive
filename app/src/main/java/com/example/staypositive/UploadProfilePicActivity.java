@@ -185,6 +185,12 @@ public class UploadProfilePicActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(UploadProfilePicActivity.this, ChangePasswordActivity.class);
             startActivity(intent);
+            finish();
+        }else if(id == R.id.delete_account)
+        {
+            Intent intent = new Intent(UploadProfilePicActivity.this, DeleteAccount.class);
+            startActivity(intent);
+            finish();
         }
         else if(id == R.id.logout)
         {
