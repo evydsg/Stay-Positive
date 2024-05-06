@@ -57,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Email"
         android:layout_marginLeft="20dp"
+        android:textColor="@color/white"
         android:background="@drawable/border"
         android:hint="Enter your email address"
         android:inputType="textEmailAddress"
@@ -96,6 +97,7 @@
         android:background="@drawable/border"
         android:hint="Enter your password"
         android:inputType="text"
+        android:textColor="@color/white"
         android:padding="10dp"
         android:textColorHint="@color/white"
         android:textSize="20dp" />

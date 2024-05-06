@@ -128,6 +128,51 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     private void changePwd(FirebaseUser firebaseUser) {
         String userPwdNew = editTextPwdNew.getText().toString();
+        String userPwdConfirmNew = editTextPwdConfirmNew.getText().toString();
+
+        if(TextUtils.isEmpty(userPwdNew)){
+            Toast.makeText(ChangePasswordActivity.this, "Password is needed." , Toast.LENGTH_SHORT).show();
+            editTextPwdNew.setError("Please enter your new password.");
+            editTextPwdNew.requestFocus();
+        }else if(TextUtils.isEmpty(userPwdConfirmNew))
+        {
+            Toast.makeText(ChangePasswordActivity.this, "Please confirm your password." , Toast.LENGTH_SHORT).show();
+            editTextPwdConfirmNew.setError("Please confirm your password.");
+            editTextPwdConfirmNew.requestFocus();
+        }else if(!userPwdNew.matches(userPwdConfirmNew))
+        {
+            Toast.makeText(ChangePasswordActivity.this, "Password did not match." ,Toast.LENGTH_SHORT).show();
+            editTextPwdConfirmNew.setError("Please re-enter the same password.");
+            editTextPwdConfirmNew.requestFocus();
+        } else if (userPwdCurr.matches(userPwdNew)) {
+            Toast.makeText(ChangePasswordActivity.this, "New password cannot be the same as old password." , Toast.LENGTH_SHORT).show();
+            editTextPwdNew.setError("Please choose a different password.");
+            editTextPwdNew.requestFocus();
+        }else
+        {
+            progressBar.setVisibility(View.VISIBLE);
+            firebaseUser.updatePassword(userPwdNew).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(ChangePasswordActivity.this, "Password has been changed." ,Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ChangePasswordActivity.this, MainProfile.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        try{
+                            throw task.getException();
+                        }catch (Exception e)
+                        {
+                            Toast.makeText(ChangePasswordActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
+        }
     }
 
     @Override
