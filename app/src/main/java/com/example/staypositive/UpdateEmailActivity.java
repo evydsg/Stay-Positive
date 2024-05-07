@@ -217,7 +217,6 @@ public class UpdateEmailActivity extends AppCompatActivity {
             Toast.makeText(UpdateEmailActivity.this, "Sign Out", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(UpdateEmailActivity.this, MainActivity.class);
 
-
             //Clear stack to prevent user from coming back to MainProfile Activity
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);

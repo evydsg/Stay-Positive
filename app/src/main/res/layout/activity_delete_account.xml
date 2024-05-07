@@ -4,6 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeleteAccount">
+    android:padding="15dp"
+    tools:context=".DeleteAccount"
+    android:background="@color/black">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/home_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/home_icon" />
+
+    <TextView
+        android:id="@+id/delete_account_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_button"
+        android:layout_marginTop="30dp"
+        android:text="Delete Account"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/delete_account_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:text="Please enter your current password and verify before continuing."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/textView_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/instructions"
+        android:layout_marginTop="20dp"
+        android:text="Password"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif" />
+
+    <EditText
+        android:id="@+id/editText_verify_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView_password"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/border"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColorHint="@color/white" />
+
+    <Button
+        android:id="@+id/authenticate"
+        android:layout_width="230dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/editText_verify_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:text="authenticate"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_delete_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/authenticate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Your profile is not verified yet!"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif" />
+
+    <Button
+        android:id="@+id/delete_account"
+        android:layout_width="232dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/textView_delete_account"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:text="delete account"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="58dp"
+        android:layout_height="85dp"
+        android:layout_below="@id/delete_account"
+        android:layout_centerInParent="true"
+        android:elevation="10dp"
+        android:visibility="gone" />
+
+
+
 
 </RelativeLayout>

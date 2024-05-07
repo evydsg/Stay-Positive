@@ -38,8 +38,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         editTextPwdCurr = findViewById(R.id.editText_verify_password);
         editTextPwdNew = findViewById(R.id.editText_new_password);
-        editTextPwdConfirmNew = findViewById(R.id.editText_verify_password);
-        textViewAuthenticated = findViewById(R.id.textView_confirm_password);
+        editTextPwdConfirmNew = findViewById(R.id.editText_confirm_password);
+        textViewAuthenticated = findViewById(R.id.textView_update_password);
         progressBar = findViewById(R.id.progressBar);
         buttonReAuthenticate = findViewById(R.id.authenticate);
         buttonChangePwd = findViewById(R.id.change_password);
@@ -217,6 +217,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             Intent intent = new Intent(ChangePasswordActivity.this, DeleteAccount.class);
             startActivity(intent);
             finish();
+
         }
         else if(id == R.id.logout)
         {

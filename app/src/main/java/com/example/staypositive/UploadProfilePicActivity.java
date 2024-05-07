@@ -191,13 +191,13 @@ public class UploadProfilePicActivity extends AppCompatActivity {
             Intent intent = new Intent(UploadProfilePicActivity.this, DeleteAccount.class);
             startActivity(intent);
             finish();
+
         }
         else if(id == R.id.logout)
         {
             authProfile.signOut();
             Toast.makeText(UploadProfilePicActivity.this, "Sign Out", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(UploadProfilePicActivity.this, MainActivity.class);
-
 
             //Clear stack to prevent user from coming back to MainProfile Activity
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

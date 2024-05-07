@@ -171,7 +171,6 @@ public class MainProfile extends AppCompatActivity {
         {
             Intent intent = new Intent(MainProfile.this, DeleteAccount.class);
             startActivity(intent);
-            finish();
         }
         else if(id == R.id.logout)
         {
