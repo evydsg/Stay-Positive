@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +20,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class DeleteAccount extends AppCompatActivity {
 
@@ -34,6 +41,7 @@ public class DeleteAccount extends AppCompatActivity {
     private ProgressBar progressBar;
     private String userPwd;
     private Button buttonReAuthenticate, buttonDeleteUser;
+    private static final String TAG = "DeleteAccount";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,6 +170,7 @@ public class DeleteAccount extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
                 {
+                    deleteUserData();
                     authProfile.signOut();
                     Toast.makeText(DeleteAccount.this, "User has been deleted!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DeleteAccount.this, welcomeActivity.class);
@@ -179,6 +188,43 @@ public class DeleteAccount extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
             }
         });
+
+    }
+
+    private void deleteUserData() {
+        //Delete Display Pic
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReferenceFromUrl(firebaseUser.getPhotoUrl().toString());
+
+        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG, "onSuccess: Photo Deleted");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, e.getMessage());
+                Toast.makeText(DeleteAccount.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Delete Data from Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
+        databaseReference.child(firebaseUser.getUid()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG, "onSuccess: User data deleted");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, e.getMessage());
+                Toast.makeText(DeleteAccount.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 
@@ -231,7 +277,6 @@ public class DeleteAccount extends AppCompatActivity {
             authProfile.signOut();
             Toast.makeText(DeleteAccount.this, "Sign Out", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(DeleteAccount.this, MainActivity.class);
-
 
             //Clear stack to prevent user from coming back to MainProfile Activity
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

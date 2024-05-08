@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     Button forgotPassword;
+    TextView registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button buttonLogin = findViewById(R.id.signIn);
         forgotPassword = findViewById(R.id.forgotPassword);
+        registerButton = findViewById(R.id.registerAccount);
 
         //
         ImageView imageViewShowHidePwd = findViewById(R.id.imageView_show_hide_pwd);
@@ -107,6 +110,14 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "You can reset your password now!", Toast.LENGTH_LONG).show();
 
                         startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+            }
+        });
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "You can register your account now.", Toast.LENGTH_LONG).show();
+
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }
