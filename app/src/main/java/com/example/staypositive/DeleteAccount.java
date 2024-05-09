@@ -139,7 +139,7 @@ public class DeleteAccount extends AppCompatActivity {
         builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               deleteUser(firebaseUser);
+                deleteUserData(firebaseUser);
             }
         });
         //Return to User Profile Activity if user presses cancel
@@ -164,13 +164,12 @@ public class DeleteAccount extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void deleteUser(FirebaseUser firebaseUser) {
+    private void deleteUser() {
         firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
                 {
-                    deleteUserData();
                     authProfile.signOut();
                     Toast.makeText(DeleteAccount.this, "User has been deleted!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DeleteAccount.this, welcomeActivity.class);
@@ -191,23 +190,26 @@ public class DeleteAccount extends AppCompatActivity {
 
     }
 
-    private void deleteUserData() {
-        //Delete Display Pic
-        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-        StorageReference storageReference = firebaseStorage.getReferenceFromUrl(firebaseUser.getPhotoUrl().toString());
+    //Delete all the data of User
+    private void deleteUserData(FirebaseUser firebaseUser) {
+        //Delete Display Pic. Also check if user has uploaded any pic before deleting
+        if(firebaseUser.getPhotoUrl()!= null){
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReferenceFromUrl(firebaseUser.getPhotoUrl().toString());
 
-        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Log.d(TAG, "onSuccess: Photo Deleted");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, e.getMessage());
-                Toast.makeText(DeleteAccount.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Log.d(TAG, "onSuccess: Photo Deleted");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d(TAG, e.getMessage());
+                    Toast.makeText(DeleteAccount.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         //Delete Data from Realtime Database
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registered Users");
@@ -215,6 +217,9 @@ public class DeleteAccount extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
                 Log.d(TAG, "onSuccess: User data deleted");
+
+                //Delete user from firebase
+                deleteUser();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -223,8 +228,6 @@ public class DeleteAccount extends AppCompatActivity {
                 Toast.makeText(DeleteAccount.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
 
