@@ -2,9 +2,10 @@ package com.example.staypositive;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,21 +27,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class MainProfile extends AppCompatActivity {
 
-    Button homeButton, deleteAccountButton;
+    Button homeButton;
     TextView textViewWelcome, textViewName, textViewEmail, textViewGender, textViewDOB;
     ProgressBar progressBar;
     String fullName, email, DoB, gender;
     ImageView imageView;
     FirebaseAuth authProfile;
+    SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_profile);
 
-        getSupportActionBar().setTitle("Profile");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        swipeToRefresh();
 
         textViewWelcome = findViewById(R.id.welcome_text);
         textViewName = findViewById(R.id.full_name);
@@ -56,12 +63,9 @@ public class MainProfile extends AppCompatActivity {
 
         //Set OnClickListener on ImageView to Open UploadProfilePicActivity
         imageView = findViewById(R.id.profile_pic);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainProfile.this, UploadProfilePicActivity.class);
-                startActivity(intent);
-            }
+        imageView.setOnClickListener(v -> {
+            Intent intent = new Intent(MainProfile.this, UploadProfilePicActivity.class);
+            startActivity(intent);
         });
 
         if (firebaseUser == null)
@@ -72,14 +76,28 @@ public class MainProfile extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             showUserProfile(firebaseUser);
         }
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainProfile.this, HomeActivity.class);
-                startActivity(intent);
-            }
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainProfile.this, HomeActivity.class);
+            startActivity(intent);
         });
 
+    }
+
+    private void swipeToRefresh() {
+        swipeContainer = findViewById(R.id.swipeContainer);
+
+        //Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(() -> {
+            //Code to refresh goes here
+            startActivity(getIntent());
+            finish();
+            overridePendingTransition(0,0);
+            swipeContainer.setRefreshing(false);
+        });
+
+        //Configure refresh colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
+                android.R.color.holo_orange_light, android.R.color.holo_red_light);
     }
 
 
@@ -105,7 +123,7 @@ public class MainProfile extends AppCompatActivity {
                     textViewDOB.setText(DoB); // Setting DOB to textViewDOB
 
 
-                    textViewWelcome.setText("Welcome, "+ fullName + "!");
+                    textViewWelcome.setText(getString(R.string.welcome_head_profile,fullName + "!"));
                     textViewName.setText(fullName);
                     textViewEmail.setText(email);
                     textViewGender.setText(gender);
@@ -144,7 +162,11 @@ public class MainProfile extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.refresh_menu)
+        if(id== android.R.id.home)
+        {
+            NavUtils.navigateUpFromSameTask(MainProfile.this);
+        }
+        else if(id == R.id.refresh_menu)
         {
             //Refresh Activity
             startActivity(getIntent());

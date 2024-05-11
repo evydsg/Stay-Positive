@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StayPositive</string>
+    <string name="welcome_head_profile">Welcome, %1$s</string>
 </resources>

@@ -27,14 +27,19 @@
             android:name=".UpdateEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateProfileActivity"
-            android:exported="false" />
+            android:name=".UpdateProfileActivity">
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainProfile"/>
+    </activity>
         <activity
-            android:name=".DeleteAccount"
-            android:exported="false" />
+            android:name=".DeleteAccount">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainProfile"/>
+        </activity>
         <activity
             android:name=".SettingsActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".MainProfile"
             android:exported="false" />

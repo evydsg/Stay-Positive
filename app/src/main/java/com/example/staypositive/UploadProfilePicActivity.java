@@ -17,16 +17,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.PicassoProvider;
+
 
 public class UploadProfilePicActivity extends AppCompatActivity {
 
@@ -62,20 +60,12 @@ public class UploadProfilePicActivity extends AppCompatActivity {
         //Regular URIs
         Picasso.get().load(uri).into(imageViewUploadPic);
 
-        buttonChoosePicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFileChooser();
-            }
-        });
+        buttonChoosePicture.setOnClickListener(v -> openFileChooser());
 
         //Uploading pic choosen
-        buttonUploadPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                uploadPic();
-            }
+        buttonUploadPicture.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE);
+            uploadPic();
         });
 
     }
@@ -93,33 +83,22 @@ public class UploadProfilePicActivity extends AppCompatActivity {
             StorageReference fileReference = storageReference.child(authProfile.getCurrentUser().getUid()+ "/displaypic." + getFileExtension(uriImage));
 
             //Upload image to Storage
-            fileReference.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Uri downloadUri = uri;
-                            firebaseUser = authProfile.getCurrentUser();
+            fileReference.putFile(uriImage).addOnSuccessListener(taskSnapshot -> {
+                fileReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                    Uri downloadUri = uri;
+                    firebaseUser = authProfile.getCurrentUser();
 
-                            //Set the image to display
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setPhotoUri(downloadUri).build();
-                            firebaseUser.updateProfile(profileUpdates);
-                        }
-                    });
+                    //Set the image to display
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setPhotoUri(downloadUri).build();
+                    firebaseUser.updateProfile(profileUpdates);
+                });
 
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(UploadProfilePicActivity.this, "Profile Picture has been uploaded.", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UploadProfilePicActivity.this, MainProfile.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(UploadProfilePicActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(UploadProfilePicActivity.this, "Profile Picture has been uploaded.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UploadProfilePicActivity.this, MainProfile.class);
+                startActivity(intent);
+                finish();
+            }).addOnFailureListener(e -> Toast.makeText(UploadProfilePicActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show());
 
         }else{
             progressBar.setVisibility(View.GONE);
