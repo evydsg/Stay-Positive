@@ -3,6 +3,7 @@ package com.example.staypositive;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -142,7 +143,11 @@ public class UploadProfilePicActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.refresh_menu)
+        if(id== android.R.id.home)
+        {
+            NavUtils.navigateUpFromSameTask(UploadProfilePicActivity.this);
+        }
+        else if(id == R.id.refresh_menu)
         {
             //Refresh Activity
             startActivity(getIntent());

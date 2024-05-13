@@ -8,20 +8,12 @@
     android:background="@color/black"
     tools:context=".UpdateProfileActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/home_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/home_icon" />
 
     <TextView
         android:id="@+id/update_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/home_button"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:text="Update your Profile"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -38,7 +30,7 @@
         android:textColor="@color/white"
         android:textAlignment="center"
         android:fontFamily="sans-serif"
-        android:textSize="15dp"/>
+        android:textSize="20dp"/>
 
     <TextView
         android:layout_marginTop="20dp"
@@ -63,7 +55,7 @@
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColorHint="@color/white"
-        android:textSize="20dp" />
+        android:textSize="22dp" />
 
     <TextView
         android:layout_marginTop="20dp"
@@ -84,7 +76,7 @@
         android:layout_below="@+id/textView_update_profile_dob"
         android:layout_height="wrap_content"
         android:hint="Enter your date of birth (mm/dd/yy)"
-        android:textSize="20dp"
+        android:textSize="22dp"
         android:focusable="false"
         android:background="@drawable/border"
         android:padding="10dp"
@@ -137,7 +129,7 @@
     <Button
         android:id="@+id/update_profile_pic"
         android:layout_width="230dp"
-        android:layout_height="35dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/radio_group_update_gender"
         android:layout_centerInParent="true"
         android:layout_marginStart="140dp"
@@ -173,7 +165,7 @@
     <Button
         android:id="@+id/update_profile_button"
         android:layout_width="230dp"
-        android:layout_height="35dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/update_email"
         android:layout_centerInParent="true"
         android:layout_marginStart="140dp"

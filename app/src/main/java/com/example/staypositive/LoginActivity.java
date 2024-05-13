@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,6 +15,8 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -185,6 +188,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         //Create the AlertDialog Box
         AlertDialog alertDialog = builder.create();
 
@@ -208,5 +212,26 @@ public class LoginActivity extends AppCompatActivity {
         }else {
             Toast.makeText(LoginActivity.this, "You can sign in now.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        //Inflate Menu Items
+        getMenuInflater().inflate(R.menu.common_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //When any option is selected
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id== android.R.id.home)
+        {
+            NavUtils.navigateUpFromSameTask(LoginActivity.this);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

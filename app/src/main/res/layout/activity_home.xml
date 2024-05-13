@@ -15,7 +15,4 @@
         android:layout_marginLeft="25dp"
         android:background="@drawable/person_icon"/>
 
-
-
-
 </RelativeLayout>

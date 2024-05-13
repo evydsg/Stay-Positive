@@ -8,20 +8,11 @@
     tools:context=".UpdateEmailActivity"
     android:background="@color/black">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/home_button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/home_icon" />
-
     <TextView
         android:id="@+id/update_email_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/home_button"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:text="Update your Email"
         android:textAlignment="center"
         android:textColor="@color/white"

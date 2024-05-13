@@ -112,15 +112,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button homeButton = findViewById(R.id.home_button);
-        homeButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UpdateProfileActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
     }
     //Update Profile to the database
     private void updateProfile(FirebaseUser firebaseUser) {

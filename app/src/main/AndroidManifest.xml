@@ -15,17 +15,24 @@
         android:theme="@style/Theme.StayPositive"
         tools:targetApi="31">
         <activity
-            android:name=".UploadProfilePicActivity"
-            android:exported="false" />
+            android:name=".UploadProfilePicActivity">
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainProfile"/>
+    </activity>
         <activity
-            android:name=".ForgotPasswordActivity"
-            android:exported="false" />
+            android:name=".ForgotPasswordActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainProfile"/>
+        </activity>
         <activity
-            android:name=".ChangePasswordActivity"
-            android:exported="false" />
+            android:name=".ChangePasswordActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainProfile"/>
+        </activity>
         <activity
-            android:name=".UpdateEmailActivity"
-            android:exported="false" />
+            android:name=".UpdateEmailActivity">
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainProfile"/></activity>
         <activity
             android:name=".UpdateProfileActivity">
         <meta-data android:name="android.support.PARENT_ACTIVITY"
@@ -38,20 +45,28 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:exported="false"
-            />
+            android:exported="false">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainProfile"/>
+        </activity>
         <activity
-            android:name=".MainProfile"
-            android:exported="false" />
+            android:name=".MainProfile">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomeActivity"/>
+        </activity>
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
+            android:name=".LoginActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".welcomeActivity"/>
+        </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+            android:name=".RegisterActivity">
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+            android:value=".welcomeActivity"/>
+        </activity>
         <activity
             android:name=".welcomeActivity"
             android:exported="false" />

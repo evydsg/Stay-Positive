@@ -2,6 +2,7 @@ package com.example.staypositive;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -224,4 +227,24 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        //Inflate Menu Items
+        getMenuInflater().inflate(R.menu.common_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //When any option is selected
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if(id== android.R.id.home)
+        {
+            NavUtils.navigateUpFromSameTask(RegisterActivity.this);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     }

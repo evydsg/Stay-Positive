@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,7 +30,6 @@ import java.util.Objects;
 
 public class MainProfile extends AppCompatActivity {
 
-    Button homeButton;
     TextView textViewWelcome, textViewName, textViewEmail, textViewGender, textViewDOB;
     ProgressBar progressBar;
     String fullName, email, DoB, gender;
@@ -55,7 +53,6 @@ public class MainProfile extends AppCompatActivity {
         textViewDOB = findViewById(R.id.date_of_birth);
         textViewGender = findViewById(R.id.gender);
 
-        homeButton = findViewById(R.id.home_button);
 
         authProfile = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
@@ -76,10 +73,6 @@ public class MainProfile extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
             showUserProfile(firebaseUser);
         }
-        homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainProfile.this, HomeActivity.class);
-            startActivity(intent);
-        });
 
     }
 

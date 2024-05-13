@@ -3,6 +3,7 @@ package com.example.staypositive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
@@ -245,7 +246,11 @@ public class DeleteAccount extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.refresh_menu)
+        if(id== android.R.id.home)
+        {
+            NavUtils.navigateUpFromSameTask(DeleteAccount.this);
+        }
+        else if(id == R.id.refresh_menu)
         {
             //Refresh Activity
             startActivity(getIntent());
