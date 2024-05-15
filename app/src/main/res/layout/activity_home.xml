@@ -7,12 +7,98 @@
     tools:context=".HomeActivity"
     android:background="@color/black">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/main_profile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="25dp"
-        android:background="@drawable/person_icon"/>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/squarelogo" />
+
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:hint="Loading..."
+        android:textColorHint="@color/white"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:textSize="30dp"
+        android:padding="10dp"/>
+
+    <Button
+        android:id="@+id/affirmationsButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/welcome_text"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="106dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="affirmations"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+
+    <Button
+        android:id="@+id/journalingButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/affirmationsButton"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="journaling"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/meditationButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/affirmationsButton"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="meditation"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/prayerButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/journalingButton"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginStart="20dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="journaling"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
 
 </RelativeLayout>
