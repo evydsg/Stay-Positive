@@ -9,33 +9,47 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewTreeObserver;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class AffirmationsMainActivity extends AppCompatActivity {
+public class GeneralAffirmationsActivity extends AppCompatActivity {
 
     FirebaseAuth authProfile;
-    Button generalButton;
+    ProgressBar progressBar;
+    ScrollView scrollView;
+    int previousScrolly = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_affirmations_main);
-        authProfile = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = authProfile.getCurrentUser();
-        setTitle("Affirmations");
+        setContentView(R.layout.activity_general_affirmations);
 
-        generalButton = findViewById(R.id.generalButton);
-        generalButton.setOnClickListener(new View.OnClickListener() {
+
+        //Determinate progress
+        progressBar = findViewById(R.id.progress_Bar);
+        progressBar.setVisibility(View.VISIBLE);
+
+        scrollView = findViewById(R.id.scroll_view);
+
+        //Increasing the progressBar by 10 every swipe
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AffirmationsMainActivity.this, GeneralAffirmationsActivity.class);
-                startActivity(intent);
+            public void onScrollChanged() {
+                int scrollY = scrollView.getScrollY();
+
+                if(scrollY < previousScrolly){
+                    progressBar.incrementProgressBy(10);
+                }
+                previousScrolly = scrollY;
             }
         });
+        
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -49,9 +63,9 @@ public class AffirmationsMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == android.R.id.home)
+        if(id== android.R.id.home)
         {
-            NavUtils.navigateUpFromSameTask(AffirmationsMainActivity.this);
+            NavUtils.navigateUpFromSameTask(GeneralAffirmationsActivity.this);
         }
         else if(id == R.id.refresh_menu)
         {
@@ -61,40 +75,40 @@ public class AffirmationsMainActivity extends AppCompatActivity {
             overridePendingTransition(0,0);
         }else if(id ==R.id.update_profile)
         {
-            Intent intent = new Intent(AffirmationsMainActivity.this, UpdateProfileActivity.class);
+            Intent intent = new Intent(GeneralAffirmationsActivity.this, UpdateProfileActivity.class);
             startActivity(intent);
             finish();
         }else if(id ==R.id.update_email)
         {
-            Intent intent = new Intent(AffirmationsMainActivity.this, UpdateEmailActivity.class);
+            Intent intent = new Intent(GeneralAffirmationsActivity.this, UpdateEmailActivity.class);
             startActivity(intent);
         }else if(id == R.id.settings)
         {
-            Toast.makeText(AffirmationsMainActivity.this, "Menu Settings", Toast.LENGTH_LONG).show();
+            Toast.makeText(GeneralAffirmationsActivity.this, "Menu Settings", Toast.LENGTH_LONG).show();
         }else if(id == R.id.change_password)
         {
-            Intent intent = new Intent(AffirmationsMainActivity.this, ChangePasswordActivity.class);
+            Intent intent = new Intent(GeneralAffirmationsActivity.this, ChangePasswordActivity.class);
             startActivity(intent);
             finish();
         }
         else if(id == R.id.delete_account)
         {
-            Intent intent = new Intent(AffirmationsMainActivity.this, DeleteAccount.class);
+            Intent intent = new Intent(GeneralAffirmationsActivity.this, DeleteAccount.class);
             startActivity(intent);
             finish();
         }
         else if(id == R.id.logout)
         {
             authProfile.signOut();
-            Toast.makeText(AffirmationsMainActivity.this, "Sign Out", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(AffirmationsMainActivity.this, MainActivity.class);
+            Toast.makeText(GeneralAffirmationsActivity.this, "Sign Out", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(GeneralAffirmationsActivity.this, MainActivity.class);
 
             //Clear stack to prevent user from coming back to MainProfile Activity
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }else {
-            Toast.makeText(AffirmationsMainActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+            Toast.makeText(GeneralAffirmationsActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }

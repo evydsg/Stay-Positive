@@ -1,9 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AffirmationsMainActivity">
+    tools:context=".AffirmationsMainActivity"
+    android:background="@color/black">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="What do you want to focus on?"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
+        android:textSize="25dp"
+        android:padding="10dp"/>
+
+
+    <Button
+        android:id="@+id/generalButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/welcome_text"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="general"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/favoritesButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/welcome_text"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="my favorites"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/ownAffirmationsButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/generalButton"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="general"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/stressAnxietyButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/favoritesButton"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="control stress \nand\n anxiety"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+
+    <Button
+        android:id="@+id/loveButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/ownAffirmationsButton"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="attract love"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/positiveButton"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/stressAnxietyButton"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif"
+        android:text="think positive"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/motivationalButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_below="@+id/loveButton"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="106dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/border"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif"
+            android:text="motivational quotes"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/confidenceButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_below="@+id/positiveButton"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/border"
+            android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif"
+            android:text="be confident"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+
+</RelativeLayout>
+</ScrollView>
