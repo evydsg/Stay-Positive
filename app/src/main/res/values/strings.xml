@@ -1,4 +1,56 @@
 <resources>
     <string name="app_name">StayPositive</string>
     <string name="welcome_head_profile">Welcome, %1$s</string>
+
+    <string name="general_affirmations">"I am successful.\n" +
+"I am confident.\n" +
+"I am powerful.\n" +
+"I am strong.\n" +
+"I am getting better and better every day.\n" +
+"All I need is within me right now.\n" +
+"I wake up motivated.\n" +
+"I am an unstoppable force of nature.\n" +
+"I am a living, breathing example of motivation.\n" +
+"I am living with abundance.\n" +
+"I am having a positive and inspiring impact on the people I come into contact with.\n" +
+"I am inspiring people through my work.\n" +
+"I’m rising above the thoughts that are trying to make me angry or afraid.\n" +
+"Today is a phenomenal day.\n" +
+"I am turning DOWN the volume of negativity in my life, while simultaneously turning UP the volume of positivity.\n" +
+"I am filled with focus.\n" +
+"I am not pushed by my problems; I am led by my dreams.\n" +
+"I am grateful for everything I have in my life.\n" +
+"I am independent and self-sufficient.\n" +
+"I can be whatever I want to be.\n" +
+"I am not defined my by past; I am driven by my future.\n"
+"I use obstacles to motivate me to learn and grow.\n"
+"Today will be a productive day.\n" +
+"I am intelligent and focused.\n" +
+"I feel more grateful each day.\n" +
+"I am getting healthier every day.\n" +
+"Each and every day, I am getting closer to achieving my goals.\n" +
+"Through the power of my thoughts and words, incredible transformations are happening in me and within my life right now.\n" +
+"I am constantly growing and evolving into a better person.\n" +
+"I’m freeing myself from all destructive doubt and fear.\n" +
+"I accept myself for who I am and create peace, power and confidence of mind and of heart.\n" +
+"I am going to forgive myself and free myself. I deserve to forgive and be forgiven.\n" +
+"I am healing and strengthening every day.\n" +
+"I’ve made it through hard times before, and I’ve come out stronger and better because of them. I’m going to make it through this.\n" +
+"I do not waste away a single day of my life. I squeeze every ounce of value out of each of my days on this planet—today, tomorrow, and everyday.\n" +
+"I must remember the incredible power I possess within me to achieve anything I desire.\n" +
+"I do not engage with people who try to penetrate my mind with unhelpful thoughts and ideas—I walk away when a person or a situation isn’t healthy for me.\n" +
+"I belong in this world; there are people that care about me and my worth.\n" +
+"My past might be ugly, but I am still beautiful.\n" +
+"I have made mistakes, but I will not let them define me.\n" +
+"My soul radiates from the inside and warms the souls of others.\n" +
+"I don’t compare myself to others. The only person I compare myself to is the person I was yesterday. And as long as the person I am today is even the tiniest bit better than the person I was yesterday—I’m meeting my own definition of success.\n" +
+"Note to self: I am going to make you so proud.\n" +
+"I finish what matters and let go of what does not.\n" +
+"I feed my spirit. I train my body. I focus my mind. This is my time.\n" +
+"My life has meaning. What I do has meaning. My actions are meaningful and inspiring.\n" +
+"What I have done today was the best I was able to do today. And for that, I am thankful.\n" +
+"One small positive thought in the morning can change my whole day. So, today I rise with a powerful thought to set the tone and allow success to reverberate through every moment of my day.\n" +
+"I set goals and go after them with all the determination I can muster. When I do this, my own skills and talents will take me to places that amaze me.\n" +
+"Happiness is a choice, and today I choose to be happy.\n"
+    </string>
 </resources>

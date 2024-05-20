@@ -33,10 +33,17 @@
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/progress_Bar"
-        android:layout_marginTop="-87dp">
+        android:layout_below="@id/progress_Bar">
 
-
+        <TextView
+            android:id="@+id/general_affirmations_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:layout_marginTop="300dp"
+            />
 
     </ScrollView>
 

@@ -6,15 +6,21 @@ import androidx.core.app.NavUtils;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class GeneralAffirmationsActivity extends AppCompatActivity {
 
@@ -22,11 +28,29 @@ public class GeneralAffirmationsActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ScrollView scrollView;
     int previousScrolly = 0;
+    int currentAffirmationIndex = 0;
+    String generalAffirmations;
+    TextView generalAffirmationsTextView;
+    List<String> selectedAffirmations;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_affirmations);
 
+        //generalAffirmations
+        generalAffirmations = getResources().getString(R.string.general_affirmations);
+        generalAffirmationsTextView = findViewById(R.id.general_affirmations_textView);
+        //Split the list by "\n"
+        List<String> affirmationsList = new ArrayList<>(Arrays.asList(generalAffirmations.split("\n")));
+
+        //Shuffle the list
+        Collections.shuffle(affirmationsList);
+
+
+        //Select the first 20 affirmations
+        selectedAffirmations = affirmationsList.subList(0, 20);
+        Log.d("Affirmations", "Size: " + selectedAffirmations.size());
+        displayNextAffirmation();
 
         //Determinate progress
         progressBar = findViewById(R.id.progress_Bar);
@@ -36,19 +60,43 @@ public class GeneralAffirmationsActivity extends AppCompatActivity {
 
         //Increasing the progressBar by 10 every swipe
 
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                int scrollY = scrollView.getScrollY();
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+            int scrollY = scrollView.getScrollY();
+            int bottom = scrollView.getChildAt(0).getHeight() - scrollView.getHeight();
 
-                if(scrollY < previousScrolly){
-                    progressBar.incrementProgressBy(10);
-                }
-                previousScrolly = scrollY;
+            if(scrollY >= bottom){
+                loadMoreAffirmations();
+                displayNextAffirmation();
             }
+            if (scrollY < previousScrolly) {
+                progressBar.incrementProgressBy(10);
+            }
+            previousScrolly = scrollY;
         });
         
     }
+
+    public void displayNextAffirmation() {
+
+        if (currentAffirmationIndex < selectedAffirmations.size()) {
+            currentAffirmationIndex++;
+            Log.d("Affirmations", "Displaying affirmation at index: " + currentAffirmationIndex);
+            Log.d("Affirmations", "Affirmation: " + selectedAffirmations.get(currentAffirmationIndex));
+            generalAffirmationsTextView.setText(selectedAffirmations.get(currentAffirmationIndex));
+
+        }
+    }
+
+    public void loadMoreAffirmations() {
+        // Load more affirmations if available
+        if (currentAffirmationIndex < selectedAffirmations.size()) {
+            displayNextAffirmation();
+        } else {
+            // Display a message indicating that all affirmations have been shown
+            Toast.makeText(this, "No more affirmations", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
