@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class GeneralAffirmationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_affirmations);
+
+        FirebaseApp.initializeApp(this);
 
         //generalAffirmations
         generalAffirmations = getResources().getString(R.string.general_affirmations);

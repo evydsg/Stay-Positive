@@ -15,11 +15,14 @@
         android:theme="@style/Theme.StayPositive"
         tools:targetApi="31">
         <activity
+            android:name=".favoritesAffirmations"
+            android:exported="false" />
+        <activity
             android:name=".GeneralAffirmationsActivity"
             android:exported="false">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainProfile" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainProfile" />
         </activity>
         <activity
             android:name=".AffirmationsMainActivity"

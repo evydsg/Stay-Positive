@@ -32,7 +32,7 @@
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/progress_Bar">
 
         <TextView
@@ -46,5 +46,26 @@
             />
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/favoritesButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/heart_icon"
+        android:layout_below="@+id/scroll_view"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="150dp"
+        />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/share_icon"
+        android:layout_below="@+id/scroll_view"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="225dp"
+        />
+
 
 </RelativeLayout>
