@@ -3,6 +3,8 @@ package com.example.staypositive;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -17,6 +20,10 @@ import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,78 +32,76 @@ import java.util.List;
 
 public class GeneralAffirmationsActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
+    generalAffirmationAdapter adapter;
+    Button favoritesButton, shareButton;
     FirebaseAuth authProfile;
-    ProgressBar progressBar;
-    ScrollView scrollView;
-    int previousScrolly = 0;
-    int currentAffirmationIndex = 0;
-    String generalAffirmations;
-    TextView generalAffirmationsTextView;
-    List<String> selectedAffirmations;
+    DatabaseReference databaseReference;
+    List<String> affirmations;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_affirmations);
 
-        FirebaseApp.initializeApp(this);
+        recyclerView = findViewById(R.id.recyclerView);
+        favoritesButton = findViewById(R.id.favoritesButton);
+        shareButton = findViewById(R.id.shareButton);
 
-        //generalAffirmations
-        generalAffirmations = getResources().getString(R.string.general_affirmations);
-        generalAffirmationsTextView = findViewById(R.id.general_affirmations_textView);
-        //Split the list by "\n"
-        List<String> affirmationsList = new ArrayList<>(Arrays.asList(generalAffirmations.split("\n")));
+        // Initialize Firebase Database
+        databaseReference = FirebaseDatabase.getInstance().getReference("favorites");
 
-        //Shuffle the list
-        Collections.shuffle(affirmationsList);
+        // Sample affirmations
+        affirmations = new ArrayList<>();
+        affirmations.add("You are strong.");
+        affirmations.add("You are capable.");
+        affirmations.add("You are loved.");
+        affirmations.add("You can achieve your goals.");
 
+        // Set up RecyclerView
+        adapter = new generalAffirmationAdapter(affirmations);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
-        //Select the first 20 affirmations
-        selectedAffirmations = affirmationsList.subList(0, 20);
-        Log.d("Affirmations", "Size: " + selectedAffirmations.size());
-        displayNextAffirmation();
-
-        //Determinate progress
-        progressBar = findViewById(R.id.progress_Bar);
-        progressBar.setVisibility(View.VISIBLE);
-
-        scrollView = findViewById(R.id.scroll_view);
-
-        //Increasing the progressBar by 10 every swipe
-
-        scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
-            int scrollY = scrollView.getScrollY();
-            int bottom = scrollView.getChildAt(0).getHeight() - scrollView.getHeight();
-
-            if(scrollY >= bottom){
-                loadMoreAffirmations();
-                displayNextAffirmation();
+        favoritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addAffirmationToFavorites(getCurrentAffirmation());
             }
-            if (scrollY < previousScrolly) {
-                progressBar.incrementProgressBy(10);
-            }
-            previousScrolly = scrollY;
         });
-        
+
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Implement sharing functionality
+            }
+        });
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!recyclerView.canScrollVertically(-1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    displayNextAffirmation();
+                }
+            }
+        });
     }
 
-    public void displayNextAffirmation() {
-
-        if (currentAffirmationIndex < selectedAffirmations.size()) {
-            currentAffirmationIndex++;
-            Log.d("Affirmations", "Displaying affirmation at index: " + currentAffirmationIndex);
-            Log.d("Affirmations", "Affirmation: " + selectedAffirmations.get(currentAffirmationIndex));
-            generalAffirmationsTextView.setText(selectedAffirmations.get(currentAffirmationIndex));
-
-        }
+    private void displayNextAffirmation() {
+        int currentPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+        int nextPosition = (currentPosition + 1) % affirmations.size();
+        recyclerView.smoothScrollToPosition(nextPosition);
     }
 
-    public void loadMoreAffirmations() {
-        // Load more affirmations if available
-        if (currentAffirmationIndex < selectedAffirmations.size()) {
-            displayNextAffirmation();
-        } else {
-            // Display a message indicating that all affirmations have been shown
-            Toast.makeText(this, "No more affirmations", Toast.LENGTH_SHORT).show();
+    private String getCurrentAffirmation() {
+        int currentPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+        return affirmations.get(currentPosition);
+    }
+
+    private void addAffirmationToFavorites(String affirmation) {
+        String key = databaseReference.push().getKey();
+        if (key != null) {
+            databaseReference.child(key).setValue(affirmation);
         }
     }
 
