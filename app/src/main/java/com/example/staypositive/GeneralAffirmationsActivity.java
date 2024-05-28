@@ -46,54 +46,7 @@ public class GeneralAffirmationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_affirmations);
 
-        //recyclerView = findViewById(R.id.recyclerView);//
-        //shareButton = findViewById(R.id.shareButton);
-
-        scrollView = findViewById(R.id.scroll_View);
-        // Initialize Firebase Database
-        databaseReference = FirebaseDatabase.getInstance().getReference("favorites");
-        affirmationTextView = findViewById(R.id.general_affirmations_textView);
-        // Sample affirmations
-        affirmations = new ArrayList<>();
-        affirmations.add("You are strong.");
-        affirmations.add("You are capable.");
-        affirmations.add("You are loved.");
-        affirmations.add("You can achieve your goals.");
-
-
-        displayAffirmation();
-        ViewTreeObserver observer = scrollView.getViewTreeObserver();
-        if (observer != null) {
-            observer.addOnScrollChangedListener(() -> {
-                if (scrollView.getScrollY() == 0) {
-                    showNextAffirmation();
-                }
-            });
-        }
-
     }
-    public void displayAffirmation()
-    {
-        if (currentAffirmationIndex < affirmations.size())
-        {
-            affirmationTextView.setText(affirmations.get(currentAffirmationIndex));
-        }else {
-            Toast.makeText(this,"No more affirmations.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void showNextAffirmation()
-    {
-        currentAffirmationIndex++;
-        if(currentAffirmationIndex < affirmations.size())
-        {
-            displayAffirmation();
-            scrollView.scrollTo(0, 0);
-        }else {
-            Toast.makeText(this,"No more affirmations.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

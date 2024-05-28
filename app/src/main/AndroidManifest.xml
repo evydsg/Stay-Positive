@@ -15,6 +15,9 @@
         android:theme="@style/Theme.StayPositive"
         tools:targetApi="31">
         <activity
+            android:name=".DetailedActivity"
+            android:exported="false" />
+        <activity
             android:name=".favoritesAffirmations"
             android:exported="false" />
         <activity
