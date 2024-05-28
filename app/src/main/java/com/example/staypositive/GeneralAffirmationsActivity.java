@@ -33,20 +33,39 @@ import java.util.List;
 
 public class GeneralAffirmationsActivity extends AppCompatActivity {
 
-    ScrollView scrollView;
-    generalAffirmationAdapter adapter;
-    Button favoritesButton, shareButton;
-    FirebaseAuth authProfile;
-    DatabaseReference databaseReference;
-    List<String> affirmations;
-    TextView affirmationTextView;
-    int currentAffirmationIndex = 0;
+    private RecyclerView recyclerView;
+    private GeneralAffirmationAdapter adapter;
+    private List<String> generalAffirmationsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general_affirmations);
+        setContentView(R.layout.activity_main);
 
-    }
+        // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Initialize the list of general affirmations
+        generalAffirmationsList = new ArrayList<>();
+        // Add some sample affirmations
+        generalAffirmationsList.add("I am worthy of love and respect.");
+        generalAffirmationsList.add("I am capable of achieving my goals.");
+        generalAffirmationsList.add("I choose happiness and abundance in my life.");
+
+        // Initialize the adapter
+        adapter = new GeneralAffirmationAdapter(this, generalAffirmationsList);
+        recyclerView.setAdapter(adapter);
+
+        // Set click listener for items (if needed)
+        adapter.setOnItemClickListener(new GeneralAffirmationAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // Handle item click if needed
+                String affirmation = generalAffirmationsList.get(position);
+                Toast.makeText(GeneralAffirmationsActivity.this, "Clicked: " + affirmation, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

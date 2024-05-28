@@ -1,5 +1,6 @@
 package com.example.staypositive;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,39 +11,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class generalAffirmationAdapter extends RecyclerView.Adapter <generalAffirmationAdapter.AffirmationViewHolder> {
+public class GeneralAffirmationAdapter extends RecyclerView.Adapter<GeneralAffirmationAdapter.ViewHolder> {
 
-    private List<String> generalAffirmations;
+    private List<String> generalAffirmationsData;
+    private Context context;
 
-    public generalAffirmationAdapter(List<String> generalAffirmations)
-    {
-        this.generalAffirmations = generalAffirmations;
+    public GeneralAffirmationAdapter(Context context, List<String> generalAffirmationsData) {
+        this.context = context;
+        this.generalAffirmationsData = generalAffirmationsData;
     }
 
     @NonNull
     @Override
-    public generalAffirmationAdapter.AffirmationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.general_affirmations, parent, false);
-        return new AffirmationViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull generalAffirmationAdapter.AffirmationViewHolder holder, int position) {
-
-        holder.affirmationTextView.setText(generalAffirmations.get(position));
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String affirmation = generalAffirmationsData.get(position);
+        holder.tvAffirmation.setText(affirmation);
     }
 
     @Override
     public int getItemCount() {
-        return generalAffirmations.size();
+        return generalAffirmationsData.size();
     }
 
-    static class AffirmationViewHolder extends RecyclerView.ViewHolder{
-        TextView affirmationTextView;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvAffirmation;
 
-        AffirmationViewHolder(@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            affirmationTextView = itemView.findViewById(R.id.general_affirmations_textView);
+            tvAffirmation = itemView.findViewById(R.id.tv_affirmation);
         }
     }
 }
