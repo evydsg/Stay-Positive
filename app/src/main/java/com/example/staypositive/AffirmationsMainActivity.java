@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class AffirmationsMainActivity extends AppCompatActivity {
 
     FirebaseAuth authProfile;
-    Button generalButton, favoritesButton;
+    Button general_Button, favoritesButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +27,8 @@ public class AffirmationsMainActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = authProfile.getCurrentUser();
         setTitle("Affirmations");
 
-        generalButton = findViewById(R.id.generalButton);
-        generalButton.setOnClickListener(new View.OnClickListener() {
+        general_Button = findViewById(R.id.generalButton);
+        general_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AffirmationsMainActivity.this, GeneralAffirmationsActivity.class);
