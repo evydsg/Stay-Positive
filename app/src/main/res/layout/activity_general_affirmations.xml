@@ -45,6 +45,7 @@
                 android:textSize="20sp"
                 android:layout_marginTop="250dp"
                 android:text="I am successful."
+                android:layout_marginBottom="500dp"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif"/>
 
@@ -54,12 +55,230 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:text="I am successful."
                 android:layout_marginTop="250dp"
+                android:text="I am confident."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am powerful."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am strong."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am getting better and better every day."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="All I need is within me right now."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I wake up motivated."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am an unstoppable force of nature."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am a living, breathing example of motivation."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am living with abundance."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am having a positive and inspiring impact on the people I come into contact with."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am inspiring people through my work."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I’m rising above the thoughts that are trying to make me angry or afraid."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="Today is a phenomenal day."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am turning DOWN the volume of negativity in my life, while simultaneously turning UP the volume of positivity."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am filled with focus."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am not pushed by my problems; I am led by my dreams."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am grateful for everything I have in my life."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I am independent and self-sufficient."
+                android:layout_marginBottom="500dp"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif"/>
+
+            <TextView
+                android:id="@+id/affirmation20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="250dp"
+                android:text="I can be whatever I want to be."
+                android:layout_marginBottom="500dp"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif"/>
 
         </LinearLayout>
+
 
     </ScrollView>
 
