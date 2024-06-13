@@ -34,8 +34,6 @@ The difficulty in finding a single resource to address anxiety, depression, and 
 5. **Testing**:
     - Conducted thorough testing to ensure functionality and user satisfaction.
 
-## Evelise Guenda
-
 ### 1. IDE and Programming Language
 
 **Choice of Development Environment:**
